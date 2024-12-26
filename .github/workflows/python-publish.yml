@@ -1,0 +1,38 @@
+name: Publish Python Package to PyPI
+
+on:
+  release:
+    types: [published]  # This triggers the workflow when a release is created
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest  # Runs on the latest Ubuntu runner
+    
+    steps:
+      # Step 1: Checkout the code
+      - name: Check out code
+        uses: actions/checkout@v3
+        
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8  # You can change the Python version here if needed
+      
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install setuptools wheel twine  # Install required tools for packaging and publishing
+
+      # Step 4: Build the package
+      - name: Build package
+        run: |
+          python setup.py sdist bdist_wheel  # Build source and wheel distribution files
+
+      # Step 5: Publish to PyPI
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}  # PyPI username stored in GitHub secrets
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}  # PyPI API token stored in GitHub secrets
+        run: |
+          twine upload dist/*  # Upload the built package to PyPI
