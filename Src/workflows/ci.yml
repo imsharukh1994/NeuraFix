@@ -1,0 +1,71 @@
+name: NeuraFix CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Run linting (Optional)
+      - name: Run linting
+        run: |
+          pip install flake8
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      # Run tests
+      - name: Run tests
+        run: |
+          pytest tests/ --disable-warnings
+
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Run static code analysis
+      - name: Run static analysis
+        run: |
+          pip install pylint
+          pylint app/ --exit-zero
+
+  package:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Package the application
+      - name: Build distribution
+        run: |
+          python setup.py sdist bdist_wheel
+
+      # Upload package (Optional, e.g., to PyPI or a private registry)
+      - name: Upload package
+        if: github.ref == 'refs/heads/main'
+        uses: pypa/gh-action-pypi-publish@v2
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
