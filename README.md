@@ -73,3 +73,9 @@ We welcome contributions! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) for
 
 ## License  
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.  
+
+---
+
+## GitHub Security Policy
+
+For detailed information about our security policy, including supported versions and how to report vulnerabilities, please refer to the [SECURITY.md](https://github.com/imsharukh1994/NeuraFix/blob/main/SECURITY.md) file.
