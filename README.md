@@ -1,9 +1,9 @@
-# ![NeuraFix Logo](https://raw.githubusercontent.com/imsharukh1994/NeuraFix/main/DALL·E%202024-12-26%2012.06.28%20-%20A%20modern%20and%20sleek%20logo%20for%20an%20AI%20application%20named%20NeuraFix%2C%20designed%20for%20code%20analysis%2C%20error%20detection%2C%20and%20auto-fixing.%20The%20logo%20should%20feature%20a%20.webp)
+# ![NeuraFix Logo](https://raw.githubusercontent.com/imsharukh1994/NeuraFix/main/IMG_2110.webp)
 
 ## Overview  
 **NeuraFix** is a desktop-based AI tool that revolutionizes code debugging and issue resolution. Designed as a local alternative to cloud-based solutions, it ensures privacy by saving all data on your desktop.  
 
-Key Features:  
+### Key Features:  
 - **Local Execution**: Runs on Windows and Mac, with no data leaving your system.  
 - **Code Analysis**: Identifies bugs, errors, and inefficiencies in real-time.  
 - **Automatic Fixes**: Suggests and implements fixes automatically.  
