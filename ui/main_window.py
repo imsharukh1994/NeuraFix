@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow, QTextEdit, QPushButton, QVBoxLayout, QWidget, QHBoxLayout, QLabel
+from PyQt5.QtWidgets import QMainWindow, QPlainTextEdit, QPushButton, QVBoxLayout, QWidget, QHBoxLayout, QLabel
 from modules.compiler import run_code  # Import the run_code function from compiler
 from modules.analyzer import analyze_code  # Import the analyze_code function from analyzer
 
@@ -11,7 +11,7 @@ class MainWindow(QMainWindow):
         self.setGeometry(100, 100, 800, 600)  # Position and size of the window
         
         # Create widgets (components)
-        self.editor = QTextEdit(self)
+        self.editor = QPlainTextEdit(self)
         self.editor.setPlaceholderText("Write your code here...")  # Placeholder text in the editor
         
         self.run_button = QPushButton("Run Code", self)
