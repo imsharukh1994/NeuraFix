@@ -1,10 +1,11 @@
 from PyQt5.QtWidgets import QMainWindow, QTextEdit, QPushButton, QVBoxLayout, QWidget, QHBoxLayout, QLabel
-from PyQt5.QtCore import Qt
+from modules.compiler import run_code  # Import the run_code function from compiler
+from modules.analyzer import analyze_code  # Import the analyze_code function from analyzer
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        
+
         # Set up the window
         self.setWindowTitle("NeuraFix")
         self.setGeometry(100, 100, 800, 600)  # Position and size of the window
@@ -41,20 +42,18 @@ class MainWindow(QMainWindow):
         code = self.editor.toPlainText()  # Get code from the editor
         self.status_label.setText("Status: Running code...")
         
-        # Call the compile function here (e.g., modules.compiler.compile_code)
-        # For now, just simulate with a print statement
-        print(f"Running code:\n{code}")
+        # Call the compiler's run_code function
+        result = run_code(code)
         
-        # Update status after running code
-        self.status_label.setText("Status: Code executed successfully!")
+        # Update the status with the result
+        self.status_label.setText(f"Status: {result}")
 
     def debug_code(self):
         code = self.editor.toPlainText()  # Get code from the editor
         self.status_label.setText("Status: Analyzing code...")
         
-        # Call the analyze function here (e.g., modules.analyzer.analyze_code)
-        # For now, just simulate with a print statement
-        print(f"Analyzing code:\n{code}")
+        # Call the analyzer's analyze_code function
+        result = analyze_code(code)
         
-        # Update status after analysis
-        self.status_label.setText("Status: Code analysis complete!")
+        # Update the status with the result
+        self.status_label.setText(f"Status: {result}")
