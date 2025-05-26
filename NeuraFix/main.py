@@ -5,6 +5,7 @@ from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QSplashScreen, QMessageBox
 import time
 import traceback
+import argparse
 
 def except_hook(exctype, value, tb):
     msg = ''.join(traceback.format_exception(exctype, value, tb))
@@ -12,6 +13,10 @@ def except_hook(exctype, value, tb):
     sys.exit(1)
 
 def main():
+    parser = argparse.ArgumentParser(description="NeuraFix Application")
+    parser.add_argument('--debug', action='store_true', help='Enable debug mode')
+    args = parser.parse_args()
+    
     # Initialize the QApplication
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon("path/to/icon.png"))  # Set your app icon
