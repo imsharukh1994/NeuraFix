@@ -2,8 +2,14 @@ import sys
 from hashlib import QApplication
 from ui.main_window import MainWindow  # Importing the MainWindow class from the UI module
 from PyQt5.QtGui import QIcon, QPixmap
-from PyQt5.QtWidgets import QSplashScreen
+from PyQt5.QtWidgets import QSplashScreen, QMessageBox
 import time
+import traceback
+
+def except_hook(exctype, value, tb):
+    msg = ''.join(traceback.format_exception(exctype, value, tb))
+    QMessageBox.critical(None, "Error", msg)
+    sys.exit(1)
 
 def main():
     # Initialize the QApplication
@@ -25,4 +31,5 @@ def main():
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
+    sys.excepthook = except_hook
     main()
